@@ -37,16 +37,15 @@ namespace tassk7
                     else ok = true;
                 }
             } while (!ok);
-            int chislo = Convert.ToInt32(str);
-            int d = 0;
+            int ind = 0;
             int[] inform = new int[str.Length];
-            do
+            foreach (char c in str)
             {
-                inform[d] = chislo % 10;
-                chislo = chislo / 10;
-                d++;
-            } while (chislo > 0);
-            Array.Reverse(inform);
+                int chislo = c;
+                if (chislo == 48) inform[ind] = 0;
+                else inform[ind] = 1;
+                ind++;
+            }
 
             int n = str.Count();
             int k = (int)Math.Log(n, 2);
@@ -81,7 +80,6 @@ namespace tassk7
                 else
                 {
                     arr[i] = inform[x];
-                    int h = inform[x];
                     x++;
                 }
             }
@@ -96,7 +94,6 @@ namespace tassk7
                     even = 0;
                     for (int j = i; j < arr.Length;)
                     {
-
                         for (int t = 0; t < i + 1; t++)
                         {
                             if ((j + t) < arr.Length)
